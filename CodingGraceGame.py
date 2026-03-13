@@ -753,7 +753,7 @@ def yellow_chamber_room(player_info_arg):
     """Yellow Chamber: a blinding room of golden light and hidden traps."""
     print("\n=== THE YELLOW CHAMBER ===")
     print("The room glows with an intense golden light.")
-    print("A riddle is carved into the floor: 'I speak without a mouth and hear without ears. What am I?'")
+    print("A meme is carved into the floor: 'What is 9 + 10?" "21?'")
 
     player_info_arg["location"] = "Yellow Chamber"
     player_info_arg["health"] -= 10
@@ -767,8 +767,8 @@ def yellow_chamber_room(player_info_arg):
     show_player_info(player_info_arg)
 
     action = input("[answer | flee] > ").strip().lower()
-    if "echo" in action:
-        you_won("Correct! The golden light fades and you escape the chamber!")
+    if "21" in action:
+        you_won("Correct! 21")
     elif "flee" in action:
         return "flee"
     else:
