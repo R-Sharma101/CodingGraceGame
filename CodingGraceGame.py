@@ -749,5 +749,31 @@ def brown_chamber_room(player_info_arg):
         you_died("Wrong answer. The walls close in and crush you.")
 
     return player_info_arg
+def yellow_chamber_room(player_info_arg):
+    """Yellow Chamber: a blinding room of golden light and hidden traps."""
+    print("\n=== THE YELLOW CHAMBER ===")
+    print("The room glows with an intense golden light.")
+    print("A riddle is carved into the floor: 'I speak without a mouth and hear without ears. What am I?'")
+
+    player_info_arg["location"] = "Yellow Chamber"
+    player_info_arg["health"] -= 10
+
+    item = "Golden Coin"
+    if item not in player_info_arg["inventory"]:
+        player_info_arg["inventory"].append(item)
+        print(f"You found a {item}!")
+
+    player_info_arg["choices"].append("Yellow Chamber")
+    show_player_info(player_info_arg)
+
+    action = input("[answer | flee] > ").strip().lower()
+    if "echo" in action:
+        you_won("Correct! The golden light fades and you escape the chamber!")
+    elif "flee" in action:
+        return "flee"
+    else:
+        you_died("Wrong answer. The golden light blinds you permanently.")
+
+    return player_info_arg
 if __name__ == '__main__':
     player_info = main(player_info)
