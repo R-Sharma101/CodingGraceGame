@@ -718,6 +718,36 @@ def print_new_dungeon():
 # the script is executed directly (e.g., `python3 game.py`).  If someone
 # imports this file as a module, the game will NOT start automatically —
 # they can call main(player_info) themselves when ready.
+def brown_chamber_room(player_info_arg):
+    """Brown Chamber: a riddle challenge in an eerie wooden vault."""
+    print("\n=== THE BROWN CHAMBER ===")
+    print("You enter a dark room lined with ancient wooden walls.")
+    print("A carved inscription glows faintly on the floor.")
+    print("I have cities but no houses. Mountains but no trees.")
+    print("Water but no fish. What am I?")
 
+    player_info_arg["location"] = "Brown Chamber"
+    player_info_arg["health"] -= 10
+    if player_info_arg["health"] < 0:
+        player_info_arg["health"] = 0
+
+    artifact = "Wooden Compass"
+    if artifact not in player_info_arg["inventory"]:
+        player_info_arg["inventory"].append(artifact)
+        print(f"A {artifact} materialises in your hands.")
+
+    player_info_arg["choices"].append("Brown Chamber")
+    show_player_info(player_info_arg)
+
+    answer = input("Your answer > ").strip().lower()
+
+    if answer == "map" or answer == "a map":
+        you_won("Correct! The wooden walls part and you escape to freedom!")
+    elif "flee" in answer:
+        return "flee"
+    else:
+        you_died("Wrong answer. The walls close in and crush you.")
+
+    return player_info_arg
 if __name__ == '__main__':
     player_info = main(player_info)
