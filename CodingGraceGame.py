@@ -749,5 +749,49 @@ def brown_chamber_room(player_info_arg):
         you_died("Wrong answer. The walls close in and crush you.")
 
     return player_info_arg
+
+def purple_chamber_of_choices_room(player_info_arg):
+    """The Purple Chamber: a room with a treasure and a life or death choice."""
+
+    print_monster()
+    print("\nYou have now entered the Purple Chamber of Choices.")
+    print("You see a glowing treasure and wonder if theres any traps")
+
+    player_info_arg["location"]= "Purple Room"
+
+    print("The treasure you found has now moved to one of three areas.")
+    print("You see a monster in the room along with three choices (left, middle, or right)")
+    print("If you make the wrong choice the monster will get to you so be careful, otherwise you might find the treasure")
+
+    player_info_arg["choices"].append("Purple Room")
+
+    choice = input("Choose left, middle, or right, or try to flee > ").strip().lower()
+
+    if "left" in choice:
+        you_died("The monster smiled as you walked right into its area and now you died")
+    elif "middle" in choice:
+       player_info_arg["health"] -= 15
+       if player_info_arg["health"] < 0:
+           player_info_arg["health"]=0
+       treasure= "Amethyst Crown"
+       if treasure not in player_info_arg["inventory"]:
+            player_info_arg["inventory"].append(treasure)
+            print(f"You found a {treasure} that cost you {15} health but you added the treasure to your inventory!")
+       print("You also chose the best option allowing you to leave")
+    elif "right" in choice:
+        print("The monster had a friend here waiting for you but this friend was a bit nicer to you")
+        print("While you don't get the treasure you are able to escape with your life")
+        
+    elif "flee" in choice:
+        print("You have chosen to flee instead of try to find the treasure")
+        print("The monster laughs as you ran away but at least you are safe now")
+        
+    else:
+        you_died("Not sure what the plan was but due to your confusion the monster got to you and you have died")
+
+    show_player_info(player_info_arg)
+    return "flee"
+    
+
 if __name__ == '__main__':
     player_info = main(player_info)
