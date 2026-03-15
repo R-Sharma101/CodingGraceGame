@@ -807,7 +807,7 @@ def yellow_chamber_room(player_info_arg):
     """Yellow Chamber: a blinding room of golden light and hidden traps."""
     print("\n=== THE YELLOW CHAMBER ===")
     print("The room glows with an intense golden light.")
-    print("A meme is carved into the floor: 'What is 9 + 10?" "21?'")
+    print("A meme is carved into the floor: What is 9 + 10?" " 21?")
 
     player_info_arg["location"] = "Yellow Chamber"
     player_info_arg["health"] -= 10
