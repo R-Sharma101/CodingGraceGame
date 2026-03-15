@@ -719,36 +719,38 @@ def print_new_dungeon():
 # imports this file as a module, the game will NOT start automatically —
 # they can call main(player_info) themselves when ready.
 def brown_chamber_room(player_info_arg):
-    """Brown Chamber: a riddle challenge in an eerie wooden vault."""
+    """Brown Chamber: a riddle challenge in an eerie latrine."""
     print("\n=== THE BROWN CHAMBER ===")
-    print("You enter a dark room lined with ancient wooden walls.")
-    print("A carved inscription glows faintly on the floor.")
-    print("I have cities but no houses. Mountains but no trees.")
-    print("Water but no fish. What am I?")
+    print("You enter a dark room lined with large chamber pots.")
+    print("A dim brown light glows faintly on the floor.")
+    print("Kings and peasants both need me, yet none will brag about it.")
+    print("I hold what no one wants to keep,")
+    print("and smell of what you'd rather forget. What am I?"
 
     player_info_arg["location"] = "Brown Chamber"
     player_info_arg["health"] -= 10
     if player_info_arg["health"] < 0:
         player_info_arg["health"] = 0
 
-    artifact = "Wooden Compass"
+    artifact = "Chamber pot"
     if artifact not in player_info_arg["inventory"]:
         player_info_arg["inventory"].append(artifact)
-        print(f"A {artifact} materialises in your hands.")
+        print(f"A dusty {artifact} materialises in your hands. You grimace.")
 
     player_info_arg["choices"].append("Brown Chamber")
     show_player_info(player_info_arg)
 
     answer = input("Your answer > ").strip().lower()
 
-    if answer == "map" or answer == "a map":
-        you_won("Correct! The wooden walls part and you escape to freedom!")
+    if answer == "Chamber pot" or answer == "pot":
+        you_won("Correct! The Sewers open for you to crawl through and escape to freedom!")
     elif "flee" in answer:
         return "flee"
     else:
-        you_died("Wrong answer. The walls close in and crush you.")
+        you_died("Wrong answer. The smell overwhelms you. You pass out and die. ")
 
     return player_info_arg
+
 
 def purple_chamber_of_choices_room(player_info_arg):
     """The Purple Chamber: a room with a treasure and a life or death choice."""
@@ -791,6 +793,35 @@ def purple_chamber_of_choices_room(player_info_arg):
 
     show_player_info(player_info_arg)
     return "flee"
+    
+
+
+def yellow_chamber_room(player_info_arg):
+    """Yellow Chamber: a blinding room of golden light and hidden traps."""
+    print("\n=== THE YELLOW CHAMBER ===")
+    print("The room glows with an intense golden light.")
+    print("A meme is carved into the floor: 'What is 9 + 10?" "21?'")
+
+    player_info_arg["location"] = "Yellow Chamber"
+    player_info_arg["health"] -= 10
+
+    item = "Golden Coin"
+    if item not in player_info_arg["inventory"]:
+        player_info_arg["inventory"].append(item)
+        print(f"You found a {item}!")
+
+    player_info_arg["choices"].append("Yellow Chamber")
+    show_player_info(player_info_arg)
+
+    action = input("[answer | flee] > ").strip().lower()
+    if "21" in action:
+        you_won("Correct! 21")
+    elif "flee" in action:
+        return "flee"
+    else:
+        you_died("Wrong answer. The golden light blinds you permanently.")
+
+    return player_info_arg
     
 
 if __name__ == '__main__':
