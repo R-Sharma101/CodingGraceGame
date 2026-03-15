@@ -725,7 +725,7 @@ def brown_chamber_room(player_info_arg):
     print("A dim brown light glows faintly on the floor.")
     print("Kings and peasants both need me, yet none will brag about it.")
     print("I hold what no one wants to keep,")
-    print("and smell of what you'd rather forget. What am I?"
+    print("and smell of what you'd rather forget. What am I?")
 
     player_info_arg["location"] = "Brown Chamber"
     player_info_arg["health"] -= 10
@@ -742,7 +742,7 @@ def brown_chamber_room(player_info_arg):
 
     answer = input("Your answer > ").strip().lower()
 
-    if answer == "Chamber pot" or answer == "pot":
+    if answer == "chamber pot" or answer == "pot":
         you_won("Correct! The Sewers open for you to crawl through and escape to freedom!")
     elif "flee" in answer:
         return "flee"
